@@ -89,7 +89,7 @@ def main():
     # -------------------------
     # 3. networkx 描画データを作成   
     # -------------------------
-    # 3-1.初期化ノードの追加
+    # 3-1.初期ノードの追加
     G = nx.from_scipy_sparse_matrix(
         Xc_norm, parallel_edges=True, create_using=nx.DiGraph(), edge_attribute='weight')
 

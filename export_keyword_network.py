@@ -87,7 +87,7 @@ def main():
     Xc_norm, vocabulary, counter = __get_co_occurrence_matrix_from(keywords)
 
     # -------------------------
-    # 3. networkx で、ネットワーク図を描画
+    # 3. networkx 描画データを作成   
     # -------------------------
     # 3-1.初期化ノードの追加
     G = nx.from_scipy_sparse_matrix(

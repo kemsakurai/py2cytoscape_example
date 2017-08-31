@@ -19,9 +19,9 @@ Cytoscape、cyRESTのインストールが必要になります。
 
 * **パッケージインストール**     
 ```console
-pip install networkx
-pip install sklearn
-pip install py2cytoscape
+% pip install networkx
+% pip install sklearn
+% pip install py2cytoscape
 ```
 
 -----------------------------------------------------------------------------
@@ -30,17 +30,17 @@ pip install py2cytoscape
 ### インストール、実行
 * **git clone**    
 ```console
-git clone https://github.com/kemsakurai/py2cytoscape_example.git
+% git clone https://github.com/kemsakurai/py2cytoscape_example.git
 ```
 
 * **ディレクトリ移動**
 ```console
-cd py2cytoscape_example/
+% cd py2cytoscape_example/
 ```
 
 * **スクリプト実行**
 ```console
-python export_keyword_network.py    
+% python export_keyword_network.py    
 plot start layout_algorithm [attribute-circle]...
 plot end
 plot start layout_algorithm [stacked-node-layout]...
@@ -73,8 +73,8 @@ plot end
 * **HTMLの出力先**
 スクリプトの実行が完了すると、htmlフォルダにhtmlが出力されます。   
 ```
-cd html
-ls -1
+% cd html
+% ls -1
 attribute-circle_export.html
 attributes-layout_export.html
 circular_export.html
@@ -94,7 +94,7 @@ stacked-node-layout_export.html
 ## キーワードを入れ替える   
 Google Search Console 等の Webマスターツールから検索キーワードを取得し、スペース区切りでkeywords.txtにコピー&ペーストしてください。   
 ```console
-head keywords.txt
+% head keywords.txt
 java uribuilder
 django modelchoicefield
 sonarqube 日本語化
@@ -107,4 +107,3 @@ django crontab
 uncaught error: bootstrap's javascript requires jquery version 1.9.1 or higher, but lower than version 3
 ```
 その後スクリプトを実行すると、対象キーワードの共起ネットワーク図が出力されます。    
-

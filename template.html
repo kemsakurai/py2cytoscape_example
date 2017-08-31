@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.5/require.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset=utf-8 />
+    <style type="text/css">
+      body {
+          font: 14px helvetica neue, helvetica, arial, sans-serif;
+      }
+
+      #{{uuid}} {
+        height: {{widget_height}}px;
+        width: {{widget_width}}px;
+        position: absolute;
+        left: 4px;
+        top: 5px;
+        background: {{background}};
+      }
+    </style>
+    <script>
+    if (window['cytoscape'] === undefined) {
+      var paths = {
+          cytoscape: 'https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.2.1/cytoscape.min'
+      };
+
+      require.config({
+          paths: paths
+      });
+
+      require(['cytoscape'], function (cytoscape) {
+          console.log('Loading Cytoscape.js Module...');
+          window['cytoscape'] = cytoscape;
+
+          var event = document.createEvent("HTMLEvents");
+          event.initEvent("load_cytoscape", true, false);
+          window.dispatchEvent(event);
+      });
+    }
+
+    (function() {
+      function render() {
+         cytoscape({
+            container: $('#{{uuid}}'),
+            elements: {
+                nodes: {{nodes}},
+                edges: {{edges}}
+            },
+
+            layout: {
+                name: '{{layout}}'
+            },
+
+            boxSelectionEnabled: true,
+
+            ready: function() {
+                window.cy = this;
+                cy.fit();
+                cy.style().fromJson({{style_json}}).update();
+            }
+        });
+      }
+
+      var before_render = function(){
+        if(window['cytoscape'] === undefined){
+          console.log("Waiting for Cyjs...");
+          window.addEventListener("load_cytoscape", before_render);
+        } else {
+          console.log("Ready to render graph!");
+          render();
+        }
+      }
+
+      before_render();
+
+    })();
+    </script>
+</head>
+
+<body>
+  <div id="{{uuid}}"></div>
+  <!-- When only #uuid div is placed on this page,
+  the height of output-box on ipynb will be 0px.
+  One line below will prevent that. -->
+  <div id="dummy" style="width:{{widget_width}}px;height:{{widget_height}}px"></div>
+</body>
+
+</html
